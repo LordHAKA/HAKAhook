@@ -3,7 +3,7 @@ import random
 import time
 import json
 import os
-os.system('title Deadhook - Config')
+os.system('title HAKAhook - Config')
 done = 1
 messages = ''
 try:
@@ -14,7 +14,7 @@ except:
     os.system('title ERROR - Missing files! && PAUSE >nul')
     os._exit(0)
 
-os.system('title Deadhook - Enter webhook URL!')
+os.system('title HAKAhook - Enter webhook URL!')
 webhook = input('\u001b[0m\u001b[32;1m[\u001b[0m?\u001b[32;1m] To start, \u001b[0m\u001b[33menter the webhook! \u001b[0m>>>\u001b[33m ')
 hookInfo = requests.get(webhook)
 if hookInfo.status_code == 401:
@@ -23,7 +23,7 @@ if hookInfo.status_code == 401:
     os._exit(0)
 
 hookName = hookInfo.json()['name']
-os.system('title Deadhook - Enter number of messages to be sent!')
+os.system('title HAKAhook - Enter number of messages to be sent!')
 times = input('\u001b[0m\u001b[32;1m[\u001b[0m?\u001b[32;1m] (Enter a NUMBER) \u001b[0m\u001b[33mhow many times do you want to spam the webhook? \u001b[0m>>>\u001b[33m ') or 69
 try:
     times = int(times)
@@ -31,7 +31,7 @@ except:
     print('\u001b[0m\u001b[31m[\u001b[0m-\u001b[31m] Failed! \u001b[33mYou did not enter a valid number, going with 100!')
     times = 100
 
-os.system('title Deadhook - Ready')
+os.system('title HAKAhook - Ready')
 print(f'\u001b[0m\u001b[32;1m[\u001b[0m+\u001b[32;1m] Ready! \u001b[0m\u001b[33mSpamming webhook "{hookName}" {times} times! (Press ENTER to begin)\n\u001b[0m')
 os.system('PAUSE >nul')
 while done < times:
@@ -42,11 +42,11 @@ while done < times:
         print('\u001b[0m\u001b[31m[\u001b[0m-\u001b[31m] Failed! \u001b[33mRatelimited! Waiting a couple seconds...')
         time.sleep(w.json()['retry_after']/1000 + 1)
     else:
-        os.system(f'title Deadhook - Spamming! (#{done})')
+        os.system(f'title HAKAhook - Spamming! (#{done})')
         print(f'\u001b[0m\u001b[32;1m[\u001b[0m+\u001b[32;1m] Success! \u001b[0m\u001b[33mSent message "{tempMsg}"! (#{done})\u001b[0m')
         done += 1
 requests.delete(webhook)
 print(f'\u001b[0m\u001b[32;1m[\u001b[0m+\u001b[32;1m] Success! \u001b[0m\u001b[33mDeleted webhook!\u001b[0m')
-os.system(f'title Deadhook - Deleted webhook after spamming {done} times!')
+os.system(f'title HAKAhook - Deleted webhook after spamming {done} times!')
 print(f'\u001b[0m\u001b[32;1m[\u001b[0m+\u001b[32;1m] Report: \u001b[0m\u001b[33mSpammed webhook "{hookName}" {times} times!\n\u001b[0m')
 os.system('PAUSE >nul')
